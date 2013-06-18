@@ -9,6 +9,6 @@ var mongoose = require('mongoose')
 exports.index = function(req, res){
     Name.findOne().exec(function(err, user){
         console.log(user);
-        res.render('index', { title: 'Express' });
+        res.render('index', { title: 'Express', userName: user.name });
     });
 };
