@@ -4,11 +4,18 @@
  */
 
 var mongoose = require('mongoose')
-    , Name = mongoose.model('Name');
+    , FunnyNumber = mongoose.model('FunnyNumber');
 
 exports.index = function(req, res){
-    Name.findOne().exec(function(err, user){
-        console.log(user);
-        res.render('index', { title: 'Express', userName: user.name });
+    FunnyNumber.find().exec(function(err, numbers){
+        var magic = 0;
+        for (var i = 0 ; i < numbers.length; i++) {
+            if (numbers[i].value % 3 == 0) {
+                magic += numbers[i].value;
+            }
+        }
+
+        console.log(magic);
+        res.render('index', { title: 'Express', magicNumber: magic });
     });
 };

@@ -4,7 +4,7 @@
  */
 var mongoose = require('mongoose');
 
-require('./models/Name');
+require('./models/FunnyNumber');
 
 var express = require('express')
   , routes = require('./routes')
@@ -12,7 +12,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/m101');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
