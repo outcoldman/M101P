@@ -7,15 +7,21 @@ var mongoose = require('mongoose')
     , FunnyNumber = mongoose.model('FunnyNumber');
 
 exports.index = function(req, res){
-    FunnyNumber.find().exec(function(err, numbers){
-        var magic = 0;
-        for (var i = 0 ; i < numbers.length; i++) {
-            if (numbers[i].value % 3 == 0) {
-                magic += numbers[i].value;
-            }
-        }
+    console.log(req.route.params.n);
 
-        console.log(magic);
-        res.render('index', { title: 'Express', magicNumber: magic });
+    FunnyNumber
+        .find()
+        .limit(1)
+        .skip(req.route.params.n)
+        .sort('value')
+        .exec(function(err, numbers){
+
+            var result;
+            for (var i = 0 ; i < numbers.length; i++) {
+                result = numbers[i].value + '\n';
+            }
+
+            console.log(result);
+            res.render('index', { title: 'Express', result: result });
     });
 };
