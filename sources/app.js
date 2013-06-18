@@ -2,13 +2,15 @@
 /**
  * Module dependencies.
  */
+var mongoose = require('mongoose');
+
+require('./models/Name');
 
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path')
-  , mongoose = require('mongoose');
+  , path = require('path');
 
 mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
