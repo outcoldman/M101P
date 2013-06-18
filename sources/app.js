@@ -7,8 +7,6 @@ var mongoose = require('mongoose');
 require('./models/FunnyNumber');
 
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
   , path = require('path');
 
@@ -35,8 +33,15 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/:n?', routes.index);
-app.get('/users', user.list);
+
+var home = require('./controllers/home')
+
+app.get('/', home.index);
+
+var homework1 = require('./controllers/homework1')
+
+app.get('/hw1-2/', homework1.homework1_2);
+app.get('/hw1-3/:n', homework1.homework1_3);
 
 db.once('open', function() {
     http.createServer(app).listen(app.get('port'), function(){
