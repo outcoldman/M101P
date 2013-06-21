@@ -4,7 +4,7 @@
  */
 var mongoose = require('mongoose');
 
-require('./models/FunnyNumber');
+require('./models/homework1');
 
 var express = require('express')
   , http = require('http')
@@ -33,13 +33,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-
 var home = require('./controllers/home')
 
 app.get('/', home.index);
 
 var homework1 = require('./controllers/homework1')
 
+app.get('/hw1-1/', homework1.homework1_1);
 app.get('/hw1-2/', homework1.homework1_2);
 app.get('/hw1-3/:n', homework1.homework1_3);
 

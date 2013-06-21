@@ -4,7 +4,14 @@
  */
 
 var mongoose = require('mongoose')
-    , FunnyNumber = mongoose.model('FunnyNumber');
+    , FunnyNumber = mongoose.model('FunnyNumber')
+    , questions = mongoose.model('questions');
+
+exports.homework1_1 = function(req, res){
+    questions.findOne().exec(function(err, item){
+        res.render('homework1/hw1-1', { question: item.question, answer: item.answer });
+    });
+};
 
 exports.homework1_2 = function(req, res){
     FunnyNumber.find().exec(function(err, numbers){
