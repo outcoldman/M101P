@@ -1,0 +1,1 @@
+db.zips.aggregate([{$match:{'city':/^\d/}}, {$group:{'_id':null,'sum':{$sum:'$pop'}}}])
