@@ -1,0 +1,1 @@
+db.posts.aggregate([{$unwind:'$comments'},{$group:{'_id':'$comments.author','n':{$sum:1}}},{$sort:{n:-1}}])
